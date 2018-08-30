@@ -1,0 +1,95 @@
+body
+{
+    background-image: url(img/header.png);
+    background-repeat: no-repeat;
+}
+
+#searchWidget {
+  max-width: 500px;
+  height: 40px;
+  border-bottom: 1px solid lightgrey;
+  margin-top: 550px;
+  margin-left: 270px;
+}
+    
+#search {
+  width: calc(100% - 50px);
+  height: 100%;
+  display: inline-block;
+  padding: 5px 0px 5px 5px;
+  box-sizing: border-box;
+  vertical-align: top;
+  outline: none;
+  border: none;
+}
+
+#microphone {
+  visibility: hidden;
+  margin: 2px;
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  background-color: lightblue;
+  border-radius: 18px;
+  background-image: url("img/microphone.svg");
+}
+
+#microphone {
+  visibility: visible;
+}
+
+#microphone.recording {
+  background-color: #ffe6e6;
+  background-image: url("img/microphone_running.svg");
+}
+
+#microphone:hover {
+  cursor: pointer;
+  background-image: url("img/microphone_hover.svg");
+}
+
+.v1
+{
+    margin-top: 540px;
+    margin-left: -670px;
+}
+
+#parentdiv
+{
+    display: flex;
+    clear: both;
+}
+
+#parentdiv > div
+{
+    flex: 1;
+}
+
+.image-upload > input
+{
+    display: none;
+}
+
+.image-upload img
+{
+    width: 60px;
+    cursor: pointer;
+}
+
+input[type="file"]
+{
+    display: none;
+    clear: both;
+}
+
+#dyntable
+{
+    margin-top: 220px;
+    text-align: center;
+    margin-left: 700px;
+}
+
+#dynbody
+{
+    text-align: left;
+}

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Speech to Text Search</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/Microphone.js"></script>
+  <script type="text/javascript" src="js/SpeechToText.js"></script>
+  <script type="text/javascript" src="js/speechsearch.js"></script>
+  
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+<div id="parentdiv">
+<div id="searchWidget" style="width:20px">
+    <input id="search" type="search" autocomplete="off" autofocus>
+    <span id="microphone"></span>
+</div>
+<div style="border-left: 2px solid black;height: 40px;margin-top: 555px;margin-left: 35px"></div>
+<div class="v1">
+<div class="image-upload">
+    <form name="upload" class="form" id="send_file2" action="/test" method="POST" enctype="multipart/form-data">
+        <label for="file-input">
+            <img src="img/camera.svg"/>
+        </label>
+        <input id="file-input" type="file" name="images_file"/>
+        <input type="submit" id="btn">
+    </form>
+</div>
+
+</div>
+</div>
+<div style="text-align: center" id="dyntable" style="display: none">
+<table>
+    <thead>
+        <tr>
+            <th>Class</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody id="dynbody">
+    
+    </tbody>
+</table>
+</div>
+
+</body>
+</html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+<script>
+    var searchValue;
+    
+   $('#send_file2').submit(function(e){
+        e.preventDefault();
+     
+        var title = $('#images_file').val();
+        var profilehtml = ' ';
+       
+        $(this).ajaxSubmit
+        ({
+            data: {title: title},
+            contentType: 'application/json',
+            success: function(response){
+                        for(i=0;i<response.length;i++)
+                        {
+                            profilehtml += '<tr>';
+                            profilehtml += '<td>'+response[i].class+'</td>';
+                            profilehtml += '<td>'+response[i].score+'</td>';
+                            profilehtml += '</tr>';
+                        }
+                
+                alert(response[0].class);
+                searchValue = response[0].class;
+                runSearch(searchValue);
+                $("#dynbody").html(profilehtml);
+       }
+        
+   });
+       
+});
+</script>
+<script type="text/javascript">
+function runSearch(searchVal) {
+                    var query = searchVal;
+                                if (query.length > 0) {
+	                            var searchURL='http://www.ikea.com/gb/en/search/?k='+encodeURI(query);
+	                            window.open(searchURL); 
+                                }
+                    }
+</script>
