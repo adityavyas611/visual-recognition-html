@@ -53,11 +53,11 @@ var visualRecognition = new VisualRecognitionV3({
 app.post('/test',app.upload.single('images_file'),function(req,res){
 
 var images_file= fs.createReadStream(req.file.path);
-var threshold = 0.4;
+var threshold = 0.1;
 
 var params = {
   images_file: images_file,
-  classifier_ids: ["DefaultCustomModel_1229975198","default"],
+  classifier_ids: ["Lamp_1908146227","default"],
   threshold: threshold
 };
 
